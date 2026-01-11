@@ -1,0 +1,90 @@
+/*====TASK 2 Enum – OrderStatus====*/
+package com.store.order;
+
+public enum OrderStatus {
+    PENDING,
+    PAID,
+    SHIPPED,
+    CANCELLED
+}
+
+/*====TASK 3&6 Abstract Class – Order====*/
+package com.store.order;
+
+public abstract class Order {
+
+    private int orderId;
+    private double amount;
+    private OrderStatus status;
+
+    public Order(int orderId, double amount) {
+        this.orderId = orderId;
+        setAmount(amount);
+        this.status = OrderStatus.PENDING;
+    }
+
+    // Abstract method (abstraction)
+    public abstract void processOrder();
+
+    // Concrete method
+    public String getOrderSummary() {
+        return "Order ID: " + orderId +
+               ", Amount: " + amount +
+               ", Status: " + status;
+    }
+
+    // Getters (encapsulation)
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    // Setter with validation
+    public void setAmount(double amount) {
+        if (amount >= 0) {
+            this.amount = amount;
+        } else {
+            System.out.println("Amount cannot be negative.");
+        }
+    }
+
+    // Protected setter for subclasses
+    protected void setStatus(OrderStatus status) {
+        this.status = status;
+    }
+}
+
+/*====TASK 5 Concrete Class – OnlineOrder====*/
+package com.store.order;
+
+import com.store.payment.Payable;
+
+public class OnlineOrder extends Order implements Payable {
+
+    public OnlineOrder(int orderId, double amount) {
+        super(orderId, amount);
+    }
+
+    @Override
+    public void processOrder() {
+        System.out.println("Processing Online Order ID: " + getOrderId());
+    }
+
+    @Override
+    public void pay() {
+        setStatus(OrderStatus.PAID);
+        System.out.println("Order ID " + getOrderId() + " payment successful.");
+    }
+
+    // Optional cancel method
+    public void cancelOrder() {
+        setStatus(OrderStatus.CANCELLED);
+    }
+}
