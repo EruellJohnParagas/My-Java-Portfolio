@@ -1,0 +1,148 @@
+package activities;
+
+class Device {
+    String deviceName;
+    boolean status;
+    String location;
+
+    static int deviceCount = 0;
+
+    Device() {
+        this.deviceName = "Unknown";
+        this.status = false;
+        this.location = "Unknown";
+        deviceCount++;
+    }
+
+    Device(String deviceName, boolean status, String location) {
+        this.deviceName = deviceName;
+        this.status = status;
+        this.location = location;
+        deviceCount++;
+    }
+
+    void turnOn() {
+        this.status = true;
+        System.out.println(deviceName + " is now ON.");
+    }
+
+    void turnOff() {
+        this.status = false;
+        System.out.println(deviceName + " is now OFF.");
+    }
+
+    void displayInfo() {
+        System.out.println("Device Name: " + deviceName);
+        System.out.println("Status: " + (status ? "ON" : "OFF"));
+        System.out.println("Location: " + location);
+    }
+
+    static void showDeviceCount() {
+        System.out.println("Total devices created: " + deviceCount);
+    }
+}
+
+class LightBulb extends Device {
+    int brightnessLevel;
+    String color;
+
+    public LightBulb(String deviceName, boolean status, String location, int brightnessLevel, String color) {
+        super(deviceName, status, location);
+        this.brightnessLevel = brightnessLevel;
+        this.color = color;
+    }
+
+    public LightBulb(String deviceName, String location) {
+        super(deviceName, false, location);
+        this.brightnessLevel = 50;
+        this.color = "Warm White";
+    }
+
+    @Override
+    void displayInfo() {
+        super.displayInfo();
+        System.out.println("Brightness: " + brightnessLevel);
+        System.out.println("Color: " + color);
+    }
+
+    int adjustBrightness(int level) {
+        this.brightnessLevel = level;
+        System.out.println("Brightness adjusted to: " + brightnessLevel);
+        return brightnessLevel;
+    }
+}
+
+class Thermostat extends Device {
+    double temperature;
+    String mode;
+
+    @Override
+    void displayInfo() {
+        super.displayInfo();
+        System.out.println("Temperature: " + temperature + "°C");
+        System.out.println("Mode: " + mode);
+    }
+
+    double setTemperature(double temp) {
+        this.temperature = temp;
+        System.out.println("Temperature set to " + temperature + "°C");
+        return temperature; }
+
+    double setTemperature(double temp, String mode) {
+        this.temperature = temp;
+        this.mode = mode;
+        System.out.println("Temperature set to " + temperature + "°C in " + mode + " mode.");
+        return temperature;
+    }
+}
+
+class SmartHomeController {
+    Device[] devices;
+
+    SmartHomeController(Device[] devices) {
+        this.devices = devices; }
+
+    void turnAllOn() {
+        System.out.println("\nTurning all devices ON...");
+        for (Device d : devices) {
+            d.turnOn();
+        }
+    }
+
+    void turnAllOff() {
+        System.out.println("\nTurning all devices OFF...");
+        for (Device d : devices) {
+            d.turnOff();
+        }
+    }
+}
+
+public class SmartHomeSystem {
+    public static void main(String[] args) {
+
+        LightBulb bulb = new LightBulb("Living Room Light", "Living Room");
+
+        Thermostat t1 = new Thermostat();
+        t1.deviceName = "Bedroom Thermostat";
+        t1.location = "Bedroom";
+        t1.setTemperature(25.0, "Cooling");
+
+        Thermostat t2 = new Thermostat();
+        t2.deviceName = "Kitchen Thermostat";
+        t2.location = "Kitchen";
+        t2.setTemperature(22.0, "Heating");
+
+        Device[] devices = { bulb, t1, t2 };
+
+        SmartHomeController controller = new SmartHomeController(devices);
+        controller.turnAllOn();
+
+        System.out.println("\n     DEVICE INFORMATION");
+        for (Device d : devices) {
+            d.displayInfo();
+        }
+
+        Device.showDeviceCount();
+        controller.turnAllOff();
+    }
+}
