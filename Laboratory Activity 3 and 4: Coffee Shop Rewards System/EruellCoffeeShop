@@ -1,0 +1,128 @@
+import java.util.Scanner;
+
+class Customer {
+    String name;
+    int points;
+    static int totalCustomers = 0;
+
+    public Customer() {
+        this.name = "Unknown";
+        this.points = 0;
+        totalCustomers++;
+    }
+
+    public Customer(String name, int points) {
+        this.name = name;
+        this.points = points;
+        totalCustomers++;
+    }
+
+
+    public void addPoints(int newPoints) {
+        this.points += newPoints;
+        System.out.println(name + " earned " + newPoints + " points. Total points: " + points);
+        if (this.points >= 100) {
+            System.out.println("🎉 Congratulations " + name + "! You redeemed a free drink!");
+            this.points -= 100;
+            System.out.println("Remaining Points: " + points);
+        }
+    }
+
+
+    public void displayCustomerInfo() {
+        System.out.println("----------------------");
+        System.out.println("Customer: " + name);
+        System.out.println("Points: " + points);
+    }
+
+    public static void displayTotalCustomers() {
+        System.out.println("\nTotal Registered Customers: " + totalCustomers);
+    }
+}
+
+public class EruellCoffeeShop {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("======================================");
+        System.out.println("   ☕ Welcome to Eruell Coffee Shop ☕");
+        System.out.println("======================================");
+
+       
+        Customer c1 = new Customer("Joseph", 200);
+        Customer c2 = new Customer("Peter", 0);
+        Customer c3 = new Customer();
+        Customer c4 = new Customer("Dianne", 50);
+
+    
+        Customer[] customers = new Customer[10];
+        customers[0] = c1;
+        customers[1] = c2;
+        customers[2] = c3;
+        customers[3] = c4;
+
+        int customerCount = 4;
+        boolean running = true;
+
+        while (running) {
+            System.out.println("\n--- MENU ---");
+            System.out.println("1. Register new customer");
+            System.out.println("2. Add points to a customer");
+            System.out.println("3. Display all customer records");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = sc.nextInt();
+            sc.nextLine(); 
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter customer name: ");
+                    String name = sc.nextLine();
+                    System.out.print("Enter starting points: ");
+                    int points = sc.nextInt();
+                    customers[customerCount] = new Customer(name, points);
+                    customerCount++;
+
+                    System.out.println("Customer " + name + " has been registered!");
+                    if (points >= 100) {
+                        System.out.println("🎉 " + name + " has won a FREE DRINK!");
+                        points -= 100;
+                    }
+                    break;
+
+                case 2:
+                    System.out.println("Enter customer name to add points: ");
+                    String cname = sc.nextLine();
+                    boolean found = false;
+                    for (int i = 0; i < customerCount; i++) {
+                        if (customers[i].name.equalsIgnoreCase(cname)) {
+                            System.out.print("Enter points to add: ");
+                            int newPoints = sc.nextInt();
+                            customers[i].addPoints(newPoints);
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) System.out.println("Customer not found!");
+                    break;
+
+                case 3:
+                    System.out.println("\n=== Current Customer Records ===");
+                    for (int i = 0; i < customerCount; i++) {
+                        customers[i].displayCustomerInfo();
+                    }
+                    Customer.displayTotalCustomers();
+                    break;
+
+                case 4:
+                    running = false;
+                    System.out.println("Thank you for visiting Eruell Coffee Shop! ☕");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice! Try again.");
+            }
+        }
+        sc.close();
+    }
+}
