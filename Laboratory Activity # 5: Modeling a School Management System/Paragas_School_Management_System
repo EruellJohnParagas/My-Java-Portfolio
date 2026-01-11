@@ -1,0 +1,99 @@
+// Person.java
+class Person {
+    protected String name;
+    protected int age;
+    protected String gender;
+
+    public Person(String name, int age, String gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
+
+    public void displayInfo() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Gender: " + gender);
+    }
+}
+
+// Student.java
+class Student extends Person {
+    private String studentId;
+
+    public Student(String name, int age, String gender, String studentId) {
+        super(name, age, gender);
+        this.studentId = studentId;
+    }
+
+    public void displayStudent() {
+        System.out.println("--- Student Information ---");
+        displayInfo();
+        System.out.println("Student ID: " + studentId);
+        System.out.println();
+    }
+}
+
+// Course.java
+class Course {
+    private String courseCode;
+    private String courseName;
+
+    public Course(String courseCode, String courseName) {
+        this.courseCode = courseCode;
+        this.courseName = courseName;
+    }
+
+    public void displayCourse() {
+        System.out.println(courseCode + " - " + courseName);
+    }
+}
+
+// Teacher.java
+class Teacher extends Person {
+    private String department;
+    private Course[] courses; // aggregation relationship
+
+    public Teacher(String name, int age, String gender, String department, Course[] courses) {
+        super(name, age, gender);
+        this.department = department;
+        this.courses = courses;
+    }
+
+    public void displayTeacher() {
+        System.out.println("--- Teacher Information ---");
+        displayInfo();
+        System.out.println("Department: " + department);
+        System.out.println("Courses Handled:");
+        for (Course c : courses) {
+            c.displayCourse();
+        }
+        System.out.println();
+    }
+}
+
+// Main.java
+public class Main {
+    public static void main(String[] args) {
+        // Create Student
+        Student student = new Student("Eruell John S. Paragas", 19, "Male", "S1023");
+
+        // Create Courses
+        Course c1 = new Course("CS101", "Programming Fundamentals");
+        Course c2 = new Course("CS102", "Object-Oriented Programming");
+
+        // Create Teacher with courses
+        Course[] courses = { c1, c2 };
+        Teacher teacher = new Teacher("Sir John Roe", 45, "Male", "Computer Studies", courses);
+
+        // Display outputs
+        System.out.println("1. Displaying Student Information");
+        student.displayStudent();
+
+        System.out.println("2. Displaying Teacher Information");
+        teacher.displayTeacher();
+
+        System.out.println("3. Displaying the course");
+        c1.displayCourse(); // sample course display
+    }
+}
