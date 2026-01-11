@@ -1,0 +1,12 @@
+In this assignment, I explained the difference between abstraction and encapsulation by showing that abstraction hides 
+how things work so we can focus on what an object does, while encapsulation hides and protects an object’s internal 
+data using controlled access. I described how both concepts support each other: abstraction provides a simple interface, 
+and encapsulation protects the data behind it. I also discussed that getters and setters can create a false sense of 
+security if they are poorly designed, and I emphasized the importance of validation, limited access, and immutability 
+to make encapsulation truly effective.
+
+Lastly, I showed how interfaces support abstraction but can cause design problems when classes are forced to implement 
+irrelevant methods. I used the Vehicle example where a truck is required to implement a fly() method, which does not 
+make sense. As a workaround, I applied interface segregation by splitting the interface into smaller ones so each 
+class only implements behaviors it actually needs. This demonstrates how proper interface design leads to cleaner, 
+more logical, and more maintainable code.
