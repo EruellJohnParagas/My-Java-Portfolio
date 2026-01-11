@@ -1,0 +1,124 @@
+import java.util.Scanner;
+
+public class LibraryManagement {
+    static final int MAX_BOOKS = 5;
+    static String[] bookTitles = new String[MAX_BOOKS];
+    static String[] bookStatus = new String[MAX_BOOKS]; // "Available" or "Borrowed"
+    static int bookCount = 0;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int choice;
+        do {
+            showMenu();
+            choice = getIntInput(sc, "Enter your choice: ");
+            switch (choice) {
+                case 1:
+                    addBook(sc);
+                    break;
+                case 2:
+                    updateBookStatus(sc);
+                    break;
+                case 3:
+                    displayBooks();
+                    break;
+                case 4:
+                    generateReport();
+                    break;
+                case 5:
+                    System.out.println("Thank you for using the system!");
+                    break;
+                default:
+                    System.out.println("Invalid input. Please try again.");
+                    break;
+            }
+        } while (choice != 5);
+    }
+
+    // Menu Display
+    static void showMenu() {
+        System.out.println("\n=== Library Book Management ===");
+        System.out.println("1. Add Book");
+        System.out.println("2. Update Book Status");
+        System.out.println("3. Show All Books");
+        System.out.println("4. Generate Report");
+        System.out.println("5. Exit");
+    }
+
+    // Add a new book
+    static void addBook(Scanner sc) {
+        if (bookCount >= MAX_BOOKS) {
+            System.out.println("Book limit reached (Max: " + MAX_BOOKS + ").");
+            return;
+        }
+        System.out.print("Enter book title: ");
+        sc.nextLine(); // consume newline
+        String title = sc.nextLine();
+        bookTitles[bookCount] = title;
+        bookStatus[bookCount] = "Available";
+        bookCount++;
+        System.out.println("Book added successfully!");
+    }
+
+    // Update book status
+    static void updateBookStatus(Scanner sc) {
+        if (bookCount == 0) {
+            System.out.println("No books available to update.");
+            return;
+        }
+        displayBooks();
+        int idx = getIntInput(sc, "Select book number to update: ") - 1;
+        if (idx < 0 || idx >= bookCount) {
+            System.out.println("Invalid book number.");
+            return;
+        }
+        System.out.println("1. Available");
+        System.out.println("2. Borrowed");
+        int statusChoice = getIntInput(sc, "Choose new status: ");
+        if (statusChoice == 1) {
+            bookStatus[idx] = "Available";
+        } else if (statusChoice == 2) {
+            bookStatus[idx] = "Borrowed";
+        } else {
+            System.out.println("Invalid input.");
+            return;
+        }
+        System.out.println("Book status updated successfully!");
+    }
+
+    // Display all books
+    static void displayBooks() {
+        if (bookCount == 0) {
+            System.out.println("No books recorded.");
+            return;
+        }
+        System.out.println("\n=== Book List ===");
+        for (int i = 0; i < bookCount; i++) {
+            System.out.println((i + 1) + ". " + bookTitles[i] + " - " + bookStatus[i]);
+        }
+    }
+
+    // Generate report
+    static void generateReport() {
+        int available = 0, borrowed = 0;
+        for (int i = 0; i < bookCount; i++) {
+            if ("Available".equalsIgnoreCase(bookStatus[i])) available++;
+            else if ("Borrowed".equalsIgnoreCase(bookStatus[i])) borrowed++;
+        }
+        System.out.println("\n=== Book Report ===");
+        System.out.println("Total Books: " + bookCount);
+        System.out.println("Available Books: " + available);
+        System.out.println("Borrowed Books: " + borrowed);
+    }
+
+    // Helper method for safe integer input
+    static int getIntInput(Scanner sc, String prompt) {
+        System.out.print(prompt);
+        while (!sc.hasNextInt()) {
+            System.out.println("Invalid input. Please enter a number.");
+            sc.next();
+            System.out.print(prompt);
+        }
+        return sc.nextInt();
+    }
+}
