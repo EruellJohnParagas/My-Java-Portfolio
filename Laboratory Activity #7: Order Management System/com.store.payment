@@ -1,0 +1,6 @@
+/*=====Task 4 Interface Payable=====*/
+package com.store.payment;
+
+public interface Payable {
+    void pay();
+}
