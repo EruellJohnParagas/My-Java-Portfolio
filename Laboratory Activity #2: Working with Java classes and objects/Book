@@ -1,0 +1,47 @@
+public class Book {
+    // Properties (fields)
+    String title;
+    String author;
+    int yearPublished;
+    int currentPage;
+
+    // 1
+    // Current page defaults to 0
+    public Book(String title, String author, int yearPublished) {
+        this.title = title;
+        this.author = author;
+        this.yearPublished = yearPublished;
+        this.currentPage = 0; // Default value
+    }
+
+    // 2 
+    public Book(String title, String author, int yearPublished, int currentPage) {
+        this.title = title;
+        this.author = author;
+        this.yearPublished = yearPublished;
+        this.currentPage = currentPage;
+    }
+
+    // 3
+    public Book() {
+        this.title = "Unknown Title";
+        this.author = "Unknown Author";
+        this.yearPublished = 0;
+        this.currentPage = 0;
+    }
+
+    // Function to display details
+    public void displayDetails() {
+        System.out.println("Title: " + title + ", Author: " + author + ", Year: " + yearPublished + ", Current Page: " + currentPage);
+    }
+
+    // Function to change current page
+    public void changePage(int newPage) {
+        this.currentPage = newPage;
+    }
+
+    // Function to change author
+    public void setAuthor(String newAuthor) {
+        this.author = newAuthor;
+    }
+}
