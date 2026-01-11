@@ -1,0 +1,54 @@
+/*=====TASK 7 & 8 Main Class OrderApp=====*/
+package com.store.main;
+
+import com.store.order.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class OrderApp {
+
+    public static void main(String[] args) {
+
+        // Create ArrayList of Orders
+        ArrayList<Order> orders = new ArrayList<>();
+
+        // Create OnlineOrder objects
+        OnlineOrder order1 = new OnlineOrder(1, 1200);
+        OnlineOrder order2 = new OnlineOrder(2, 2500);
+        OnlineOrder order3 = new OnlineOrder(3, 1800);
+
+        // Process and pay some orders
+        order1.processOrder();
+        order1.pay();
+
+        order2.processOrder();
+        order2.cancelOrder(); // cancelled order
+
+        order3.processOrder();
+
+        // Add orders to list
+        orders.add(order1);
+        orders.add(order2);
+        orders.add(order3);
+
+        // Iterator traversal
+        Iterator<Order> iterator = orders.iterator();
+
+        System.out.println("\n--- Order List ---");
+        while (iterator.hasNext()) {
+            Order order = iterator.next();
+            System.out.println(order.getOrderSummary());
+
+            // Remove cancelled orders
+            if (order.getStatus() == OrderStatus.CANCELLED) {
+                iterator.remove();
+                System.out.println("Cancelled order removed.");
+            }
+        }
+
+        System.out.println("\n--- Remaining Orders ---");
+        for (Order o : orders) {
+            System.out.println(o.getOrderSummary());
+        }
+    }
+}
