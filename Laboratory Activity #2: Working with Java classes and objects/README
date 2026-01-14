@@ -1,0 +1,10 @@
+In this assignment, I defined and implemented a Book class to demonstrate the core concepts of object-oriented programming in Java. 
+The class contains properties such as title, author, yearPublished, and currentPage, and I provided multiple constructors to 
+allow different ways of creating a Book object. I also implemented methods like displayDetails(), changePage(), and setAuthor() 
+to manipulate and display the object’s data. This shows how properties, constructors, and methods work together inside a class.
+
+In the MyBookList class, I instantiated and manipulated several Book objects using the constructors and methods I created. 
+I stored the objects in an array, applied a loop and conditional statement to filter books published after 2010, and 
+displayed their details. Through this, I demonstrated basic programming concepts such as arrays, loops, conditionals, and 
+method calls within an OOP setting. Overall, this assignment shows how a class can be designed and used to model 
+real-world objects in a clear and structured Java program.
