@@ -1,0 +1,12 @@
+In this assignment, I designed a smart-device control system to demonstrate polymorphism in Java. I implemented method 
+overriding by defining the abstract method showStatus() in the Device parent class and providing different implementations 
+in each subclass (AirConditioner, LampShade, Television, and Microwave). Each device displays its own unique status, proving 
+that the same method behaves differently depending on the object type. I also used polymorphic references by storing all 
+child objects inside an ArrayList<Device>, where the parent type (Device) points to different child objects.
+
+I demonstrated runtime polymorphism and dynamic binding when calling turnOn() and showStatus() through the parent reference. 
+Even though the list stores objects as Device, Java automatically calls the correct overridden showStatus() method based on 
+the actual object type at runtime. I further applied this concept through the static methods setPowerForAll() and 
+countPoweredOn(), which operate on a collection of mixed device objects using only the parent type. Overall, 
+this program clearly shows how polymorphism, method overriding, dynamic binding, and parent-type collections 
+work together in a real-world style Java application.
