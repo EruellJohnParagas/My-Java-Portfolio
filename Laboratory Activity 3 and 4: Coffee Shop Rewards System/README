@@ -1,0 +1,11 @@
+In this assignment, I designed a real-world coffee shop loyalty system to apply core object-oriented principles in Java. 
+I implemented both default and parameterized constructors in the Customer class to show how objects can be created with 
+or without initial data. I correctly used the this keyword to refer to instance variables inside constructors and methods, 
+ensuring that object attributes are properly assigned and updated. This allows each customer object to maintain its 
+own state while sharing the same class behavior.
+
+I also demonstrated the use of static variables and static methods through totalCustomers and displayTotalCustomers(), 
+which track and display the total number of registered customers across all objects. The program uses arrays, loops, 
+conditionals, and method calls to manage customer records, add loyalty points, and handle free drink rewards. Overall, 
+this assignment shows how constructors, the this keyword, static members, and object interaction can be applied in 
+a practical, real-world Java application using proper object-oriented design.
