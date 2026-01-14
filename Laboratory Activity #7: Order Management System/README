@@ -1,0 +1,19 @@
+In this assignment, I designed a simple store order system using abstraction, encapsulation, enums, 
+interfaces, and packages to clearly define system behavior. I applied abstraction through the abstract 
+class Order, which declares the abstract method processOrder() and forces subclasses to provide their 
+own implementation. I also used the Payable interface to define a payment contract that is implemented 
+by OnlineOrder. To represent fixed system states safely, I used the OrderStatus enum with values such 
+as PENDING, PAID, SHIPPED, and CANCELLED, ensuring that order status is controlled and error-free.
+
+I implemented encapsulation by making class fields private and exposing them only through getters and 
+validated setters, protecting the internal state of each order. In the main program, I managed multiple 
+orders using an ArrayList<Order> and traversed it using an Iterator to safely remove cancelled orders 
+while preserving encapsulation. I also followed a clear project structure to properly organize the system. 
+
+The source folder is divided into packages based on responsibility: com.store.order for order-related 
+classes (Order, OnlineOrder, OrderStatus), com.store.payment for the Payable interface, and 
+com.store.main for the OrderApp execution class, this improves readability and maintainability. 
+This structure reflects real-world Java project organization and makes the code easier to navigate, 
+maintain, and scale. Overall, this assignment demonstrates how abstraction, interfaces, enums, 
+packages, and collection handling work together to build a clean, modular, and well-structured 
+Java application.
