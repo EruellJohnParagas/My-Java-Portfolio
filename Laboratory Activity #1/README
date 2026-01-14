@@ -1,0 +1,10 @@
+In this assignment, I created a basic Java library management system that solves a real-world problem: tracking books and 
+their availability. I used Java arrays (bookTitles and bookStatus) to store and manage book data, and I controlled the 
+program flow using loops and conditional statements through a menu-driven interface. The do-while loop keeps the program 
+running until the user exits, while if-else and switch statements handle different user actions such as adding books, 
+updating status, and generating reports.
+
+I also organized the program using reusable methods such as addBook(), updateBookStatus(), displayBooks(), 
+generateReport(), and getIntInput() to keep the code clean and modular. This structure improves readability, reduces repetition, 
+and makes the program easier to maintain. Overall, my implementation demonstrates how arrays, loops, conditionals, 
+and method organization can work together to build a simple but functional real-world Java application.
